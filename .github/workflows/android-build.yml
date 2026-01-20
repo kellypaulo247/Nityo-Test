@@ -43,7 +43,7 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install JS dependencies
+      - name: Install dependencies
         run: yarn install --frozen-lockfile
 
       - name: Setup ANDROID_SDK_ROOT
