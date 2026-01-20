@@ -36,7 +36,7 @@ const ForgotPasswordScreen: React.FC<Props> = ({ navigation }) => {
       setIsLoading(true);
       try {
         await forgotPassword(values.email);
-        Alert.alert(strings.auth.forgotPasswordSuccess);
+        Alert.alert(strings.success.forgotPasswordSuccess);
         navigation.navigate('Login');
       } catch (error) {
         Alert.alert(strings.errors.forgotPasswordFailed, (error as Error).message || strings.errors.genericError);
@@ -62,7 +62,7 @@ const ForgotPasswordScreen: React.FC<Props> = ({ navigation }) => {
         />
         <Button
           title={strings.buttons.resetPassword}
-          onPress={formik.handleSubmit}
+          onPress={() => formik.handleSubmit()}
           loading={isLoading}
           disabled={!formik.isValid || isLoading}
         />
@@ -70,7 +70,7 @@ const ForgotPasswordScreen: React.FC<Props> = ({ navigation }) => {
           style={styles.link}
           onPress={() => navigation.navigate('Login')}
         >
-          <Text style={styles.linkText}>{strings.links.backToLogin}</Text>
+          <Text style={styles.linkText}>{strings.buttons.backToLogin}</Text>
         </TouchableOpacity>
       </FormWrapper>
     </ScreenWrapper>

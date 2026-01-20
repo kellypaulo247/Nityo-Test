@@ -115,7 +115,7 @@ const SignupScreen: React.FC<Props> = ({ navigation }) => {
             />
             <Button
               title={strings.buttons.signup}
-              onPress={formik.handleSubmit}
+              onPress={() => formik.handleSubmit()}
               loading={isLoading}
               disabled={!formik.isValid || isLoading}
             />

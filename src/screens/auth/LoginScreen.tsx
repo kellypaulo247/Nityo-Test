@@ -78,7 +78,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
         />
         <Button
           title={strings.buttons.login}
-          onPress={formik.handleSubmit}
+          onPress={() => formik.handleSubmit()}
           loading={isLoading}
           disabled={!formik.isValid || isLoading}
         />
