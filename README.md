@@ -1,52 +1,160 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# User Authentication App
 
-# Getting Started
+A modern React Native application featuring user authentication with a clean, component-based architecture. Built with TypeScript, React Navigation, and best practices for code splitting and maintainability.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Features
 
-## Step 1: Start Metro
+- **User Authentication**: Login, signup, and password recovery
+- **Persistent Sessions**: Automatic login state management with AsyncStorage
+- **Navigation**: Stack navigation for auth flows, bottom tabs for main app
+- **Code Splitting**: Lazy-loaded screens for optimal performance
+- **Reusable Components**: Custom Button and Input components
+- **TypeScript**: Full type safety throughout the application
+- **Context API**: Centralized state management for authentication
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## Architecture Highlights
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+### 🎨 Design System
+- **Centralized Colors**: All colors defined in `src/assets/colors.ts` with semantic naming
+- **Typography & Strings**: All text content centralized in `src/constants/strings.ts`
+- **Reusable Components**: `Button` and `Input` components with consistent styling
 
+### 📋 Form Validation & Schema
+- **Yup Schemas**: Robust validation schemas in `src/constants/schemas.ts`
+- **Formik Integration**: Advanced form handling with real-time validation
+- **Type Safety**: Full TypeScript support with inferred types from schemas
+
+### 🔄 State Management
+- **Context API**: Clean authentication state management
+- **Persistent Storage**: AsyncStorage for session persistence
+- **Loading States**: Proper loading indicators throughout the app
+
+### 🚀 Performance Optimizations
+- **Code Splitting**: Lazy-loaded screens for optimal bundle sizes
+- **React.lazy()**: Dynamic imports for authentication and main app sections
+- **Suspense Boundaries**: Graceful loading states
+
+### 🏗️ Project Structure
+```
+src/
+├── assets/              # Centralized design tokens
+│   └── colors.ts       # Color palette and theme
+├── components/         # Reusable UI components
+├── constants/          # App constants and schemas
+│   ├── strings.ts      # Localized strings
+│   └── schemas.ts      # Validation schemas
+├── context/            # React Context providers
+├── navigation/         # Navigation configuration
+└── screens/            # Screen components
+```
+
+### 🔧 Key Technologies
+
+- **React Native 0.83.1** with modern architecture
+- **TypeScript** for type safety
+- **React Navigation** with stack and bottom tabs
+- **Formik + Yup** for form management
+- **AsyncStorage** for local persistence
+- **React Context** for state management
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js >= 20
+- React Native development environment set up
+- Android Studio (for Android) or Xcode (for iOS)
+
+### Installation
+
+1. Install dependencies:
 ```sh
-# Using npm
+npm install
+```
+
+2. For iOS, install CocoaPods:
+```sh
+cd ios && bundle exec pod install
+```
+
+### Running the App
+
+1. Start Metro bundler:
+```sh
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
+2. Run on Android:
 ```sh
-# Using npm
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
+3. Run on iOS:
 ```sh
-bundle install
+npm run ios
 ```
 
-Then, and every time you update your native dependencies, run:
+## Usage
 
+1. **First Launch**: The app shows the login screen
+2. **Sign Up**: Create a new account with email, password, and name
+3. **Login**: Use your credentials to access the app
+4. **Forgot Password**: Request a password reset (mock implementation)
+5. **Main App**: Navigate between Home, Profile, and Settings tabs
+6. **Logout**: Sign out from the Settings screen
+
+## Development
+
+### Code Splitting
+
+The app uses React.lazy() for lazy loading screens, improving initial bundle size and load times:
+
+```tsx
+const LoginScreen = React.lazy(() => import('../screens/auth/LoginScreen'));
+```
+
+### Component Reusability
+
+Custom components like `Button` and `Input` promote consistency and maintainability:
+
+```tsx
+<Button title="Login" loading={isLoading} onPress={handleLogin} />
+<Input placeholder="Email" value={email} onChangeText={setEmail} error={error} />
+```
+
+### State Management
+
+Authentication state is managed through React Context, providing a clean API for components:
+
+```tsx
+const { user, login, logout } = useAuth();
+```
+
+## Testing
+
+Run tests with:
 ```sh
-bundle exec pod install
+npm test
 ```
+
+## Linting
+
+Check code quality with:
+```sh
+npm run lint
+```
+
+## Contributing
+
+1. Follow the established project structure
+2. Use TypeScript for all new code
+3. Implement proper error handling
+4. Add appropriate validation
+5. Test on both iOS and Android
+
+## License
+
+This project is licensed under the MIT License.
 
 For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
 
@@ -62,36 +170,3 @@ If everything is set up correctly, you should see your new app running in the An
 
 This is one way to run your app — you can also build it directly from Android Studio or Xcode.
 
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
