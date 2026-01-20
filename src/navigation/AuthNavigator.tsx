@@ -1,10 +1,19 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-// Lazy load screens for code splitting
-const LoginScreen = React.lazy(() => import('../screens/auth/LoginScreen'));
-const SignupScreen = React.lazy(() => import('../screens/auth/SignupScreen'));
-const ForgotPasswordScreen = React.lazy(() => import('../screens/auth/ForgotPasswordScreen'));
+// In tests, React.lazy + dynamic import can cause issues (requires experimental flags).
+// Load screens synchronously when running under Jest or when NODE_ENV=test to keep tests stable.
+const isTest = typeof process !== 'undefined' && (process.env.JEST_WORKER_ID !== undefined || process.env.NODE_ENV === 'test');
+
+const LoginScreen = isTest
+  ? require('../screens/auth/LoginScreen').default
+  : React.lazy(() => import('../screens/auth/LoginScreen'));
+const SignupScreen = isTest
+  ? require('../screens/auth/SignupScreen').default
+  : React.lazy(() => import('../screens/auth/SignupScreen'));
+const ForgotPasswordScreen = isTest
+  ? require('../screens/auth/ForgotPasswordScreen').default
+  : React.lazy(() => import('../screens/auth/ForgotPasswordScreen'));
 
 export type AuthStackParamList = {
   Login: undefined;
