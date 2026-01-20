@@ -28,6 +28,8 @@ export const strings = {
     sendResetLink: 'Send Reset Link',
     logout: 'Logout',
     backToLogin: 'Back to Login',
+    resetPassword: 'Reset Password',
+    cancel: 'Cancel',
   },
 
   // Placeholders
@@ -49,6 +51,7 @@ export const strings = {
     loginFailed: 'Login Failed',
     signupFailed: 'Signup Failed',
     genericError: 'An error occurred',
+    forgotPasswordFailed: 'Failed to send password reset email',
   },
 
   // Success messages
@@ -56,6 +59,7 @@ export const strings = {
     login: 'Login successful',
     signup: 'Account created successfully',
     passwordReset: 'Password reset email sent',
+    forgotPasswordSuccess: 'Password reset email sent',
   },
 
   // Links
@@ -106,10 +110,5 @@ export const strings = {
     nameMinLength: 'Name must be at least 2 characters',
   },
 
-  // Forgot Password screen
-  forgotPasswordSuccess: 'Password reset email sent',
-  forgotPasswordFailed: 'Failed to send password reset email',
-
-  // Reset Password screen
-  resetPassword: 'Reset Password',
+  // Links (already above)
 } as const;
