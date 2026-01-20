@@ -45,7 +45,7 @@ const SignupScreen: React.FC<Props> = ({ navigation }) => {
       try {
         await signup(values.email, values.password, values.name);
         Alert.alert(strings.success.signup, strings.auth.signupSuccess);
-        navigation.navigate('Login'); // Route to login after successful signup
+        setTimeout(() => navigation.navigate('Login'), 500); // Ensure navigation after alert
       } catch (error) {
         Alert.alert(strings.errors.signupFailed, (error as Error).message || strings.errors.genericError);
       } finally {

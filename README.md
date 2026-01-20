@@ -152,6 +152,19 @@ npm run lint
 4. Add appropriate validation
 5. Test on both iOS and Android
 
+
+## CI/CD Pipeline
+
+This project uses a GitHub Actions workflow for continuous integration and code quality checks. The workflow runs on every push and pull request to the `main` branch, and includes:
+
+- Dependency installation
+- Linting
+- Type checking
+- Unit tests
+
+See `.github/workflows/ci.yml` for the workflow definition, and [README_PIPELINES.md](README_PIPELINES.md) for a detailed breakdown of the pipeline steps.
+
+---
 ## License
 
 This project is licensed under the MIT License.
